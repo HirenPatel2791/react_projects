@@ -1,16 +1,50 @@
 console.log('Apps is running');
 
-//JSX - JavaScript XML
-var template = (
+
+
+
+var userName = 'Hiren Patel';
+var userAge = 28;
+var userLocation = 'New Jersey';
+
+var user = {
+    name : 'Hiren',
+    age : 29,
+    location : 'India'
+};
+
+var app = {
+    title : 'Indecision App',
+    subtitle : 'Put your life in the hands of the computer'
+};
+
+var templateTwo = (
 <div>
-    <h1> This is JSX from app.js</h1>
-    <p>This is some info</p>
-    <ol>
-        <li>Item One</li>
-        <li>Item Two</li>
-    </ol>
+    <h1>
+        {userName.toUpperCase() + '!'}
+        {app.title}
+    </h1>
+    <p>
+        Age: {user.age}
+        {app.sub}
+    </p>
+    <p>
+        Location: {userLocation}
+    </p>
 </div>
 );
+
+//JSX - JavaScript XML
+var template = (
+    <div>
+        <h1> {app.title} </h1>
+        <p> {app.subtitle} </p>
+        <ol>
+            <li>Item One</li>
+            <li>Item Two</li>
+        </ol>
+    </div>
+    );
 
 var appRoot = document.getElementById('app');
 
