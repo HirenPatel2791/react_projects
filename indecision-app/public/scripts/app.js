@@ -1,137 +1,37 @@
 'use strict';
 
-console.log('Apps is running');
-
-// var userName = 'Hiren Patel';
-// var userAge = 28;
-// var userLocation = 'New Jersey';
-
-// const user = {
-//     name : 'Hiren Patel',
-//     age : 16,
-//     location : 'NY'
-// };
-
-// function getLocation(location) {
-//     if(location) {
-//         return location;
-//     } else {
-//         return 'Unknown';
-//     }
-// }
-
-// function getLocationNew(location) {
-//     if(location) {
-//         return <p>Location : {location}</p>;
-//     }
-// }
-
-// const templateTwo = (
-// <div>
-//     <h1>
-//         {userName.toUpperCase() + '!'}
-//         <br/>
-//         {user.name ? user.name : 'Anonymous'}
-//     </h1>
-//     <p>
-//         Age: {user.age}
-//     </p>
-//     {(user.age && user.age >= 18) && <p> Age: {user.age}</p>}
-//     <p>
-//         Location: {getLocation(userLocation)}
-//     </p>
-//     {getLocationNew(user.location)}
-// </div>
-// );
 var appRoot = document.getElementById('app');
 
-var app = {
-    title: 'Indecision App',
-    subtitle: 'Put your life in the hands of the computer',
-    options: []
+var showText = true;
+
+var toggle = function toggle() {
+    showText = !showText;
+    renderCounterApp();
 };
 
-var onFormSubmit = function onFormSubmit(e) {
-    e.preventDefault();
-    //console.log('form submitted!');
-    //console.log(e);
-    var option = e.target.elements.option.value;
+var renderCounterApp = function renderCounterApp() {
 
-    if (option) {
-        app.options.push(option);
-        e.target.elements.option.value = '';
-        renderApp();
-    }
-};
-
-var removeAll = function removeAll() {
-    app.options.length = 0; // app.options = [];
-    renderApp();
-};
-
-var numbers = [55, 101, 1000];
-
-//JSX - JavaScript XML
-
-var renderApp = function renderApp() {
-    var template = React.createElement(
+    var templateTwo = React.createElement(
         'div',
         null,
         React.createElement(
             'h1',
             null,
-            ' ',
-            app.title,
-            ' '
-        ),
-        app.subtitle && React.createElement(
-            'p',
-            null,
-            ' ',
-            app.subtitle,
-            ' '
-        ),
-        React.createElement(
-            'p',
-            null,
-            app.options.length > 0 ? 'Here are your options:' : 'No options'
-        ),
-        React.createElement(
-            'p',
-            null,
-            app.options.length
+            'Visibility Toggle'
         ),
         React.createElement(
             'button',
-            { onClick: removeAll },
-            ' Remove All '
+            { onClick: toggle, className: 'button' },
+            showText ? 'Hide Details' : 'Show Details'
         ),
-        React.createElement(
-            'ol',
+        showText ? React.createElement(
+            'p',
             null,
-            app.options.map(function (option) {
-                return React.createElement(
-                    'li',
-                    { key: option },
-                    ' ',
-                    option,
-                    ' '
-                );
-            })
-        ),
-        React.createElement(
-            'form',
-            { onSubmit: onFormSubmit },
-            React.createElement('input', { type: 'text', name: 'option' }),
-            React.createElement(
-                'button',
-                null,
-                ' Add Option '
-            )
-        )
+            'This is some text'
+        ) : React.createElement('p', null)
     );
 
-    ReactDOM.render(template, appRoot);
+    ReactDOM.render(templateTwo, appRoot);
 };
 
-renderApp();
+renderCounterApp();
