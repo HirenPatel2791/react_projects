@@ -41,64 +41,71 @@ console.log('Apps is running');
 //     {getLocationNew(user.location)}
 // </div>
 // );
-
+const appRoot = document.getElementById('app');
 
 const app = {
     title : 'Indecision App',
     subtitle : 'Put your life in the hands of the computer',
-    options: ['One','Two']
+    options: []
 };
+
+const onFormSubmit = (e) => {
+    e.preventDefault();
+    //console.log('form submitted!');
+    //console.log(e);
+    const option = e.target.elements.option.value;
+
+    if (option) {
+        app.options.push(option);
+        e.target.elements.option.value = '';
+        renderApp();
+    }
+
+}; 
+
+const removeAll = () => {
+    app.options.length = 0; // app.options = [];
+    renderApp();
+}
+
+const numbers = [55, 101, 1000];
+
 //JSX - JavaScript XML
-const template = (
-    <div>
-        <h1> {app.title} </h1>
-        {app.subtitle && <p> {app.subtitle} </p>}
-        <p>{app.options.length > 0 ? 'Here are your options:' : 'No options'}</p> 
-        <ol>
-            <li>{app.options[0]}</li>
-            <li>{app.options[1]}</li>
-        </ol>
-    </div>
-); 
 
-//class is className is Jsx
-let count = 0;
-const addOne = () => {
-    count++;
-    //console.log('add one', count);
-    renderCounterApp();                 //Manual data binding
-};
-
-const minusOne = () => {
-    //console.log('minus one');
-    count--;
-    renderCounterApp();
-}
-
-
-const reset = () => {
-    //console.log('reset');
-    count = 0;
-    renderCounterApp();
-}
-
-
-const appRoot = document.getElementById('app');
-
-
-const renderCounterApp = () => {
-    const templateTwo = (
+const renderApp = () => {
+    const template = (
         <div>
-            <h1>Count: {count}</h1>
-             <button onClick={addOne} className="button">+1</button>
-             <button onClick={minusOne} className="button">-1</button>
-             <button onClick={reset} className="button">reset</button>
+            <h1> {app.title} </h1>
+            {app.subtitle && <p> {app.subtitle} </p>}
+            <p>{app.options.length > 0 ? 'Here are your options:' : 'No options'}</p> 
+            <p>{app.options.length}</p>
+            <button onClick={removeAll}> Remove All </button>
+            {
+               // [99, 98, 97, 'Mike Smith', null, undefined, true]
+            }
+            {
+                // [<p key="1">a</p>,<p key="2">a</p>]
+            }
+            {
+                /* numbers.map((number) => {
+                    return <p key={number}> Number: {number}</p>
+                }) */
+            }
+            <ol>
+                {
+                    app.options.map((option) => {
+                        return <li key={option}> {option} </li>
+                    })
+                }
+            </ol>
+            <form onSubmit={onFormSubmit}>
+                <input type="text" name="option"/>
+                <button> Add Option </button>
+            </form>
         </div>
-    );
-
+    ); 
     
-    ReactDOM.render(templateTwo, appRoot);
-
+    ReactDOM.render(template, appRoot);
 };
 
-renderCounterApp();
+renderApp();
