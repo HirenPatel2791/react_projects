@@ -14,8 +14,9 @@ class Counter extends React.Component {
         //console.log('Component did mount, Fetching Data');
         try {
             const json = localStorage.getItem('count');
-            const count = JSON.parse(json);
-            if (count) {
+            //const count = JSON.parse(json);
+            const count = parseInt(json, 10); //decimal
+            if (!isNaN(count)) {
                 this.setState(() => ({ count }))
             }
         } catch (e) {
