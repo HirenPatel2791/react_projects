@@ -1,8 +1,6 @@
-//import './utils.js';
-import { square, add } from './utils.js';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-console.log('app.js is runningas');
-
-console.log(square(4));
-
-console.log(add(4, 6));
+const template = <p> test es6 import</p>;
+//const template = React.createElement('p',{},'testing');
+ReactDOM.render(template,document.getElementById('app'));
