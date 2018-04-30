@@ -84,3 +84,37 @@ import IndecisionApp from './components/IndecisionApp';
 //ReactDOM.render(<User name="Hiren" age={26}/>, document.getElementById('app'));
 
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
+
+
+// transfrom - class babel plugin test::
+
+
+class OldSyntax {
+    constructor() {
+        this.name = 'Mike';
+        this.getGreeting = this.getGreeting.bind(this);
+    }
+    getGreeting() {
+        return `Hi, My name is ${this.name}`;
+    }
+}
+
+const oldSyntax = new OldSyntax();
+// how we break this binding
+const getGreeting = oldSyntax.getGreeting
+//console.log(oldSyntax);
+console.log(getGreeting()); 
+
+// new 
+
+class NewSyntax {
+    name = 'Jan';
+    getGreeting = () => {
+        return `Hi, My name is ${this.name}`;
+    }
+}
+
+const newSyntax = new NewSyntax();
+const newgetGreeting = newSyntax.getGreeting
+console.log(newSyntax);
+console.log(newgetGreeting());

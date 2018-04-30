@@ -6,16 +6,56 @@ import Action from './Action';
 
 export default class IndecisionApp extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
-        this.handlePick = this.handlePick.bind(this);
-        this.handleAddoption = this.handleAddoption.bind(this);
-        this.handleDeleteOption = this.handleDeleteOption.bind(this);
-        this.state = {
+    state = {
+        options: []
+    };
+    // constructor(props) {
+    //     super(props);
+    //     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+    //     this.handlePick = this.handlePick.bind(this);
+    //     this.handleAddoption = this.handleAddoption.bind(this);
+    //     this.handleDeleteOption = this.handleDeleteOption.bind(this);
+    //     this.state = {
+    //         options: []
+    //     }
+    // }
+    handleDeleteOptions = () => {
+        this.setState(() => ({
             options: []
+        }));
+    };
+
+    handleDeleteOption = (optionToRemove) => {
+        this.setState((prevState) => ({
+            options: prevState.options.filter((option) => {
+                return optionToRemove !== option;
+            })
+        }));
+    };
+
+    handlePick = () => {
+        const randomNum = Math.floor(Math.random() * this.state.options.length);
+        const option = this.state.options[randomNum];
+        console.log(option);
+    };
+
+    //es6 methods to class properties convertions 
+    handleAddoption = (option) => {
+        if (!option) {
+            return 'Enter value to add item'
+        } else if (this.state.options.indexOf(option) > -1) {
+            return 'This option already exist'
         }
-    }
+
+        // this.setState((prevState) => {
+        //     return {
+        //         options: prevState.options.concat([option])
+        //     };
+        // });
+        this.setState((prevState) => ({
+            options: prevState.options.concat([option])
+        }));
+    };
 
     componentDidMount() {
         //console.log('Component did mount, Fetching Data');
@@ -42,43 +82,6 @@ export default class IndecisionApp extends React.Component {
 
     componentWillUnmount() {
         console.log('Component will unmount');
-    }
-
-    handleDeleteOptions() {
-        this.setState(() => ({
-            options: []
-        }));
-    }
-
-    handleDeleteOption(optionToRemove) {
-        this.setState((prevState) => ({
-            options: prevState.options.filter((option) => {
-                return optionToRemove !== option;
-            })
-        }));
-    }
-
-    handlePick() {
-        const randomNum = Math.floor(Math.random() * this.state.options.length);
-        const option = this.state.options[randomNum];
-        console.log(option);
-    }
-
-    handleAddoption(option) {
-        if (!option) {
-            return 'Enter value to add item'
-        } else if (this.state.options.indexOf(option) > -1) {
-            return 'This option already exist'
-        }
-
-        // this.setState((prevState) => {
-        //     return {
-        //         options: prevState.options.concat([option])
-        //     };
-        // });
-        this.setState((prevState) => ({
-            options: prevState.options.concat([option])
-        }));
     }
 
     render() {
