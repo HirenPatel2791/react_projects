@@ -79,15 +79,15 @@ export default class IndecisionApp extends React.Component {
         } catch (e) {
 
         }
-        
+
     }
 
     componentDidUpdate(prevProps, prevState) {
-        
+
         //console.log(prevState);
-        if(prevState.options.length !== this.state.options.length) {
+        if (prevState.options.length !== this.state.options.length) {
             const json = JSON.stringify(this.state.options);
-            localStorage.setItem('options',json);
+            localStorage.setItem('options', json);
         }
     }
 
@@ -101,19 +101,23 @@ export default class IndecisionApp extends React.Component {
         return (
             <div>
                 <Header subtitle={subtitle} />
-                <Action
-                    hasOptions={this.state.options.length > 0}
-                    handlePick={this.handlePick}
-                />
-                <Options
-                    options={this.state.options}
-                    handleDeleteOptions={this.handleDeleteOptions}
-                    handleDeleteOption={this.handleDeleteOption}
-                />
-                <AddOption
-                    handleAddoption={this.handleAddoption} />
+                <div className="container">
+                    <Action
+                        hasOptions={this.state.options.length > 0}
+                        handlePick={this.handlePick}
+                    />
+                    <div className="widget">
+                        <Options
+                            options={this.state.options}
+                            handleDeleteOptions={this.handleDeleteOptions}
+                            handleDeleteOption={this.handleDeleteOption}
+                        />
+                        <AddOption
+                            handleAddoption={this.handleAddoption} />
+                    </div>
+                </div>
 
-                <OptionModal 
+                <OptionModal
                     selectedOption={this.state.selectedOption}
                     clearSelectedOption={this.clearSelectedOption}
                 />
