@@ -13,12 +13,13 @@ const store = configureStore();
 
 const expenseOne = store.dispatch(addExpense({ description: 'Water Bill', amount: 1000, createdAt : 1000 }));
 const expenseTwo = store.dispatch(addExpense({ description: 'Gas Bill', amount: 300, createdAt: 2000 }));
+const expenseThree = store.dispatch(addExpense({ description: 'Rent', amount: 19000, createdAt : 3000 }));
 
-store.dispatch(setTextFilter('water'));
+// store.dispatch(setTextFilter('water'));
 
-setTimeout(() => {
-    store.dispatch(setTextFilter('bill'));
-},3000);
+// setTimeout(() => {
+//     store.dispatch(setTextFilter('bill'));
+// },3000);
 
 const state = store.getState();
 
