@@ -4,3 +4,6 @@ Convert react code to js using babel
 
 (includes:: live-server babel react plugins: env,react node)
 `
+
+To run the test in watch mode
+yarn test -- --watch
