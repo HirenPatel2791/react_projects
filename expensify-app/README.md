@@ -7,3 +7,5 @@ Convert react code to js using babel
 
 To run the test in watch mode
 yarn test -- --watch
+
+check
