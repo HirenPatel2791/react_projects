@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Expense Dashboard Page 1`] = `
+<div>
+  <p>
+     404!
+  </p>
+  <a
+    href="/"
+  >
+     Go Home 
+  </a>
+  <br />
+  <Link
+    replace={false}
+    to="/"
+  >
+     Go Home(Client Side)
+  </Link>
+</div>
+`;
